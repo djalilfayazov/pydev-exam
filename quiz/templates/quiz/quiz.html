@@ -1,0 +1,28 @@
+{% extends 'quiz/base.html' %}
+
+{% block css %}
+    <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
+    <link href="https://storage.googleapis.com/chydlx/plugins/dlx-quiz/css/main.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div id="quizdata">
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://storage.googleapis.com/chydlx/plugins/dlx-quiz/js/main.js"></script>
+    <script>
+        $("#quizdata").dlxQuiz({
+            quizData: {{ quiz_data }}
+        });
+    </script>
+{% endblock %}

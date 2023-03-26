@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+
+{% block content %}
+
+    <div id="test">
+        {% for q in quizs %}
+
+            <div id="test-block">
+                <a href="{{q.get_absolute_url}}" id="test-link" class="glow-button">
+                    {{q.title}} [by {{q.author}}]
+                </a>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    {% block css %}
+    {% endblock %}
+
+    <link rel="icon" href="https://img.icons8.com/external-sbts2018-outline-color-sbts2018/256/external-quiz-basic-ui-elements-2.3-sbts2018-outline-color-sbts2018.png" type="image/x-icon"/>
+</head>
+<body>
+
+
+    {% include 'quiz/style.html' %}
+
+
+    <header id="header">
+        <a id="home" href="/">
+            Главная
+        </a>
+
+        {% if category %}
+            <p id="title">Темы по категории {{category.title}}</p>
+        {% else %}
+            {% if user.is_superuser %}
+                <a href="{% url 'createtest' %}" id="admin-link">Новый тест</a>
+                <a href="{% url 'createqs' %}" id="admin-link">Новый вопрос</a>
+                <a href="{% url 'createcat' %}" id="admin-link">Новая категория</a>
+                <a href="admin/" id="admin-link">Аккаунт: {{user.username}}</a>
+            {% else %}
+                <a href="admin/logout/" id="admin-link">Войти как суперпользователь</a>
+            {% endif %}
+        {% endif %}
+    </header>
+
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <footer>
+        
+        <div id="links">
+            
+            <a id="account" href="https://github.com/djalilfayazov">
+                <img id="img" src="https://img.icons8.com/ios-filled/256/github.png" alt="GitHub">
+            </a>
+            <a id="account" href="https://t.me/kiritsu">
+                <img id="img" src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/256/external-telegram-is-a-cloud-based-instant-messaging-and-voice-over-ip-service-logo-shadow-tal-revivo.png" alt="Telegram">
+            </a>
+            <a id="account" href="https://instagram.com/djalilfayazov">
+                <img id="img" src="https://img.icons8.com/dusk/256/instagram-new.png" alt="Instagram">
+            </a>
+
+        </div>
+
+        <div>
+
+            <form action="{% url 'search' %}" method="get">
+
+                <input id="search-field" name="category" type="text" placeholder="Поиск по категориям">
+            
+            </form>
+
+        </div>
+
+    </footer>
+
+
+    <!--scripts-->
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>

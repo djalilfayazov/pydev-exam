@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+
+{% block content %}
+
+     <aside class="category">
+          <ul id="category-menu">
+               {% for category in objects %}
+               <li>
+                    <a href="{{ category.get_absolute_url }}">
+                         {{category.id}}) {{ category.title }}
+                    </a>
+               </li>
+               {% endfor %}
+          </ul>
+     </aside>
+
+{% endblock content %}
